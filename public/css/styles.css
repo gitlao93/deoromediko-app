@@ -1,0 +1,120 @@
+/* taman ra 930px  */
+/* flexes */
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.fl-align-center{
+    align-items: center;
+}
+
+.fl-align-start{
+    align-items: flex-start;
+}
+
+.fl-align-end{
+    align-items: flex-end;
+}
+
+.fl-justify-content-center{
+    justify-content: center;
+}
+
+.fl-justify-content-start{
+    justify-content: flex-start;
+}
+
+.fl-justify-content-end{
+    justify-content: flex-end;
+}
+
+.fl-align-content-center{
+    align-content: center;
+}
+
+.fl-align-content-start{
+    align-content: flex-start;
+}
+
+.fl-align-content-end{
+    align-content: flex-end;
+}
+/* width: % */
+.wd-10 {
+    width: 10%;
+}
+.wd-20 {
+    width: 20%;
+}
+.wd-30 {
+    width: 30%;
+}
+
+.wd-40 {
+    width: 40%;
+}
+.wd-50 {
+    width: 50%;
+}
+.wd-60 {
+    width: 60%;
+}
+.wd-70 {
+    width: 70%;
+}
+.wd-80 {
+    width: 80%;
+}
+.wd-90 {
+    width: 90%;
+}
+.wd-100 {
+    width: 100%;
+}
+
+/* margin */
+
+.mg-x-center {
+    margin: 0 auto;
+}
+
+.mg-y-center {
+    margin: auto 0;
+}
+
+.mg-x-5 {
+    margin: 0 5%;
+}
+
+.mg-y-5 {
+    margin: 5% 0;
+}
+
+/* padding */
+
+.pd-y-5 {
+    padding: 5% 0;
+}
+
+.pd-5 {
+    padding: 5%;
+}
+
+/* misc */
+
+.card {
+    border-bottom: 2px solid rgba(33, 146, 255, 0.9);
+}
+
+.img-in-card {
+    width: 250px;
+    height: 300px;
+    filter: drop-shadow(3px 5px 4px rgba(0, 0, 0, 0.3));
+    border-radius: 30px;
+}
