@@ -42,6 +42,15 @@ class DatabaseSeeder extends Seeder
 
         Product::create(
             [
+                'generic_name' => 'Cyclophosphamide',
+                'brand_name' => 'Cyphos 1g',
+                'product_form' => '1g vial powder',
+                'market_price' => 700.00
+            ]
+        );
+
+        Product::create(
+            [
                 'generic_name' => 'Doxorubicin',
                 'brand_name' => 'Doxoruba',
                 'product_form' => '25mg/ml solution',
