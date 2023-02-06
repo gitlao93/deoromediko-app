@@ -2,7 +2,7 @@
     <x-banner_search_page/>
     <div>
         <div class="flex-col wd-80 mg-x-center">
-            @foreach($productLists as $list)
+            @foreach($products as $list)
                 <x-card class="flex-row mg-y-5 wd-100">
                     <div class="flex-row fl-align-center fl-justify-content-center wd-30">
                         <img src="{{asset('/images/no-photo-available1350441335.png')}}" alt="Product_image" class="img-in-card ">

@@ -9,10 +9,10 @@
                 <h1>De Oro Mediko Drug<br>Distribution services</h1>
                 <p class="wd-80">Welcome to <b>De Oro Mediko Drug Distribution Services</b>, your trusted partner in providing medical drugs to government agencies. We are dedicated to delivering high-quality and affordable drugs to those in need.</p>
                 <a id="view-all" href="/products">view all products</a>
-                <form class="search-box wd-80">
+                <form class="search-box wd-80" action="/products">
                     <div class="input-box">
                         <i class="fa fa-search" aria-hidden="true"></i>
-                        <input type="text" placeholder="search medicine..." />
+                        <input type="text" placeholder="search medicine..." name="search"/>
                         <button class="button">Search</button>
                         
                     </div>
