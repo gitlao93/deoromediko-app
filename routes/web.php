@@ -19,5 +19,10 @@ Route::get('/', function () {
 });
 
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/add-prod', function(){
+    return view('add-prod');
+});
+Route::post('/add-prod', [ProductController::class, 'store']);
+// Route::post('/products', 'ProductController@store')->name('store');
 // Route::get('/products', [ProductController::class, 'showAll']);
 // Route::get('/products/search', [ProductController::class, 'search']);

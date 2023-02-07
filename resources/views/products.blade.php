@@ -5,7 +5,8 @@
             @foreach($products as $list)
                 <x-card class="flex-row mg-y-5 wd-100">
                     <div class="flex-row fl-align-center fl-justify-content-center wd-30">
-                        <img src="{{asset('/images/no-photo-available1350441335.png')}}" alt="Product_image" class="img-in-card ">
+                        {{-- {{ asset('/images/'.$list->image_path) }} --}}
+                        <img src="{{ $list->image_path != null ? asset('/images/'.$list->image_path) : asset('/images/no-photo-available1350441335.png') }}" alt="Product_image" class="img-in-card ">
                     </div>
                     <div class="pd-5 wd-70">
                         <div class="product-info-container flex-row">
