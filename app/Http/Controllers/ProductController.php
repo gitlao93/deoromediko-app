@@ -19,4 +19,12 @@ class ProductController extends Controller
     public function addproduct() {
         return view('user.addproduct');
     }
+
+    public function singleprod() {
+        return view('user.single-prod');
+    }
+
+    public function updateprod() {
+        return view('user.update-prod');
+    }
 }

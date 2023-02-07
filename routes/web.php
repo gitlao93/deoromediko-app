@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+// USER ROUTE
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('user/dashboard', [ProductController::class, 'dashboard']);
 Route::get('user/addproduct', [ProductController::class, 'addproduct']);
+Route::get('user/single-prod', [ProductController::class, 'singleprod']);
+Route::get('user/update-prod', [ProductController::class, 'updateprod']);
