@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('user/dashboard', [ProductController::class, 'dashboard']);
+Route::get('user/addproduct', [ProductController::class, 'addproduct']);
 Route::get('/add-prod', function(){
     return view('add-prod');
 });
