@@ -18,7 +18,11 @@
                     {{-- <strong>Brand Name:</strong> --}}
                     <input type="text" name="brand_name" class="form-control" placeholder="Brand Name">
                 </div>
-       
+                
+                <div class="form-group">
+                    {{-- <strong>Brand Name:</strong> --}}
+                    <input type="text" name="product_form" class="form-control" placeholder="Product Form">
+                </div>
     
     
                 <div class="form-group">

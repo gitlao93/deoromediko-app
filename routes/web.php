@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+// Route::get('/add-prod', [ProductController::class, 'create']);
+
+Route::get('/add-prod', function(){
+    return view('add-prod');
+});
 
 // USER ROUTE
 Route::get('/products', [ProductController::class, 'index']);
