@@ -60,5 +60,10 @@ class ProductController extends Controller
         return view('user.update-prod');
     }
 
+    public function addproduct() {
+        return view('user.addproduct');
+    }
+
+
     
 }
