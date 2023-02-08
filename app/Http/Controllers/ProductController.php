@@ -52,5 +52,18 @@ class ProductController extends Controller
         //                 ->with('success','Product created successfully.');
     }
 
+    public function singleprod() {
+        return view('user.single-prod');
+    }
+
+    public function updateprod() {
+        return view('user.update-prod');
+    }
+
+    public function addproduct() {
+        return view('user.addproduct');
+    }
+
+
     
 }

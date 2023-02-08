@@ -18,11 +18,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+// USER ROUTE
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/add-prod', function(){
-    return view('add-prod');
-});
-Route::post('/add-prod', [ProductController::class, 'store']);
-// Route::post('/products', 'ProductController@store')->name('store');
-// Route::get('/products', [ProductController::class, 'showAll']);
-// Route::get('/products/search', [ProductController::class, 'search']);
+Route::get('user/dashboard', [ProductController::class, 'dashboard']);
+Route::get('user/addproduct', [ProductController::class, 'addproduct']);
+Route::get('user/single-prod', [ProductController::class, 'singleprod']);
+Route::get('user/update-prod', [ProductController::class, 'updateprod']);
