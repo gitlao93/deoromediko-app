@@ -20,13 +20,18 @@ Route::get('/', function () {
 
 // Route::get('/add-prod', [ProductController::class, 'create']);
 
-Route::get('/add-prod', function(){
-    return view('add-prod');
-});
+// Route::get('/add-prod', function(){
+//     return view('add-prod');
+// });
 
 // USER ROUTE
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('user/dashboard', [ProductController::class, 'dashboard']);
-Route::get('user/addproduct', [ProductController::class, 'addproduct']);
+Route::post('user/addproduct', [ProductController::class, 'store']);
+Route::get('user/addproduct', function(){
+    return view('user/addproduct');
+});
+
+
 Route::get('user/single-prod', [ProductController::class, 'singleprod']);
 Route::get('user/update-prod', [ProductController::class, 'updateprod']);

@@ -20,11 +20,12 @@ class ProductController extends Controller
 
     public function showAll() {
         return view('products',['productLists' => Product::all()]);
+ 
     }
 
-    public function create() {
-        return view('add-prod');
-    }
+    // public function create() {
+    //     return view('add-prod');
+    // }
 
 
     public function store(Request $request)
@@ -48,8 +49,8 @@ class ProductController extends Controller
      
         Product::create($input);
       
-        // return redirect()->route('/products')
-        //                 ->with('success','Product created successfully.');
+        return redirect('user/dashboard')
+                        ->with('success','Product created successfully.');
     }
 
     public function singleprod() {
@@ -65,8 +66,13 @@ class ProductController extends Controller
     }
 
 
-    public function dashboard() {
-        return view('user.dashboard');
+    public function dashboard(Request $request) {
+
+        $filters = $request->only(['search']);
+        $products = Product::filter($filters)->get();
+
+        return view('user.dashboard', compact('products'));
+
     }
 
 
