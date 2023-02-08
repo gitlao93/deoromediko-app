@@ -57,12 +57,21 @@ class ProductController extends Controller
         return view('user.single-prod');
     }
 
-    public function updateprod() {
-        return view('user.update-prod');
+    public function updateprod(Request $request) {
+
+        $filters = $request->only(['search']);
+        $products = Product::filter($filters)->get();
+
+        return view('user.update-prod', compact('products'));
+
     }
 
     public function addproduct() {
         return view('user.addproduct');
+    }
+
+    public function viewuser() {
+        return view('user.view-user');
     }
 
 

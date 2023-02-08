@@ -31,7 +31,6 @@ Route::post('user/addproduct', [ProductController::class, 'store']);
 Route::get('user/addproduct', function(){
     return view('user/addproduct');
 });
-
-
 Route::get('user/single-prod', [ProductController::class, 'singleprod']);
 Route::get('user/update-prod', [ProductController::class, 'updateprod']);
+Route::get('user/view-user', [ProductController::class, 'viewuser']);

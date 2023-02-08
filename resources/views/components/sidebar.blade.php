@@ -32,12 +32,14 @@
       <li><a class="nav-link {{ Request::is('user/dashboard') ? 'active' : '' }}" href="{{ url('/user/dashboard') }}" ><i class="fa-solid fa-microscope"></i> View Product</a></li>
       <li><a class="nav-link {{ Request::is('user/addproduct') ? 'active' : '' }}" href="{{ url('/user/addproduct') }}"  ><i class="fa-solid fa-folder-plus"></i> Add Product</a></li>
       <li><a class="nav-link {{ Request::is('user/update-prod') ? 'active' : '' }}" href="{{ url('/user/update-prod') }}" ><i class="fa-solid fa-eraser"></i> Update Product</a></li>
-      <li><a href="#" ><i class="fa-solid fa-user-plus"></i> Users</a></li>
+      <li><a class="nav-link {{ Request::is('user/view-user') ? 'active' : '' }}" href="{{ url('/user/view-user') }}" ><i class="fa-solid fa-user-plus"></i> Users</a></li>
 
     </ul>
   </div>
   <div id='center' class="main center">
     {{ $slot }}
   </div>
+
+  
 
   

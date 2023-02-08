@@ -21,7 +21,8 @@
     <p>Description</p>
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates quae architecto neque odit aut quisquam? Fugit, magnam nesciunt</p>
     <div class="submit-btn">
-        <a href="{{ url('/user/update-prod') }}"><button type="submit" class="btn btn-primary" style="width: 350px;">Update Product</button></a>
+        <button type="button" data-toggle="modal" data-target="#update" class="btn btn-primary" style="width: 350px;">Update Product</button>
     </div>
 </div>
+<x-modal></x-modal>
 </x-sidebar>

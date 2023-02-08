@@ -3,16 +3,7 @@
 @endsection
 <x-sidebar>
     <div class="add-prod-wrapper">
-        {{-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif --}}
+
         <h1>Product Information</h1>
 
         <form action="/user/addproduct" method="POST" enctype="multipart/form-data">
@@ -21,8 +12,7 @@
             <div class="add-form-wrapper">
 
                 <div class="form-group">
-                    {{-- <strong>Generic Name:</strong> --}}
-                    {{-- <input type="text" name="generic_name" class="form-control" placeholder="Generic Name"> --}}
+
                     <input value="{{ old('generic_name') }}" placeholder="Generic Name" id="generic_name" type="text"
                         class="form-control @error('generic_name') is-invalid @enderror" name="generic_name"
                         value="{{ old('generic_name') }}"" autocomplete="generic_name" autofocus>
@@ -75,11 +65,10 @@
 
 
                 <div class="form-group">
-                    {{-- <strong>Image:</strong> --}}
-                    {{-- <input type="file" name="image_path" class="form-control" placeholder="image"> --}}
-                    <input value="{{ old('image_path') }}" placeholder="Market Price" id="image_path"
-                        type="file" class="form-control @error('image_path') is-invalid @enderror"
-                        name="image_path" value="{{ old('image_path') }}"" autocomplete="image_path" autofocus placeholder="image">
+
+                    <input value="{{ old('image_path') }}" placeholder="Market Price" id="image_path" type="file"
+                        class="form-control @error('image_path') is-invalid @enderror" name="image_path"
+                        value="{{ old('image_path') }}"" autocomplete="image_path" autofocus placeholder="image">
                     @error('image_path')
                         <span class="invalid-feedback" role="alert" style="color: red;">
                             <strong>{{ $message }}</strong>
@@ -93,5 +82,10 @@
             </div>
 
         </form>
+
+
+
     </div>
+
+
 </x-sidebar>
