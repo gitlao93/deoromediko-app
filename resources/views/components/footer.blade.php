@@ -72,7 +72,7 @@
 <footer class="footer-container">
 
     <div class="footer-logo-container">
-        <div class="header-logo">
+        <div class="footer-logo">
             <a href="/"><img class="logo" src="{{ asset('/images/logo.png') }}" alt="image logo" /></a>
             <a href="/">
                 <p>De Oro Mediko<br>Drug Distribution Service</p>
@@ -81,6 +81,7 @@
     </div>
 
     <div class="footer-info-container">
+        <ul>
         <li>
             <h6>Open Hours</h6>
             <div class="">
