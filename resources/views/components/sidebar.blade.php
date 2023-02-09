@@ -1,4 +1,4 @@
-<x-main></x-main>
+{{-- <x-main></x-main> --}}
 
 
 <div class="header">
@@ -36,10 +36,9 @@
 
     </ul>
   </div>
-  <div id='center' class="main center">
+  {{-- <div id='center' class="main center">
     {{ $slot }}
-  </div>
-
-  
+  </div> --}}
+ 
 
   

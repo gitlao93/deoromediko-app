@@ -1,5 +1,5 @@
 @section('title') {{'Single Product'}} @endsection
-<x-sidebar>
+<x-main>
 <div class="single-prod-wrapper">
     <div><a href="{{ url('/user/dashboard') }}"><i class="fa-solid fa-chevron-left"></i> <span>Back</span></a></div>
     
@@ -24,5 +24,5 @@
         <button type="button" data-toggle="modal" data-target="#update" class="btn btn-primary" style="width: 350px;">Update Product</button>
     </div>
 </div>
-<x-modal></x-modal>
-</x-sidebar>
+
+</x-main>

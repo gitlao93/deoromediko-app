@@ -1,7 +1,7 @@
 @section('title')
     {{ 'View User' }}
 @endsection
-<x-sidebar>
+<x-main>
 
     <div class="user-container">
         <h1>Users</h1>
@@ -21,4 +21,4 @@
 
 
 
-</x-sidebar>
+</x-main>

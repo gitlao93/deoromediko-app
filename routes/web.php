@@ -34,3 +34,6 @@ Route::get('user/addproduct', function(){
 Route::get('user/single-prod', [ProductController::class, 'singleprod']);
 Route::get('user/update-prod', [ProductController::class, 'updateprod']);
 Route::get('user/view-user', [ProductController::class, 'viewuser']);
+
+// SINGLE ROUTE
+Route::get('user/single-prod/', [ProductController::class, 'singleprod']);
