@@ -1,7 +1,7 @@
 @section('title')
     {{ 'Add Product' }}
 @endsection
-<x-sidebar>
+<x-main>
     <div class="add-prod-wrapper">
 
         <h1>Product Information</h1>
@@ -88,4 +88,4 @@
     </div>
 
 
-</x-sidebar>
+</x-main>

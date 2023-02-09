@@ -53,8 +53,15 @@ class ProductController extends Controller
                         ->with('success','Product created successfully.');
     }
 
-    public function singleprod() {
-        return view('user.single-prod');
+    public function singleprod(Request $id) {
+
+        $filters = $id->only(['search']);
+
+        $products = Product::filter($filters)->get();
+
+        // return view('user.dashboard', compact('products'));
+        // dd (compact('products'));
+        return view('user.single-prod' , compact('products'));
     }
 
     public function updateprod(Request $request) {
