@@ -6,14 +6,16 @@
    
     <div class="prod-info">
         <img  src="{{asset('/images/sample-prod.png')}}" alt="product img"/>
+        {{-- <img src="{{ $products->image_path != null ? asset('/images/' . $products->image_path) : asset('/images/no-photo-available1350441335.png') }}"
+        alt="Product_image" class="img-in-card "> --}}
         <div>
-            <p>Division: NEPRHOLOGY</p>
-            <p>Generic Name: NEPRHOMIN</p>
+            {{-- <p>Division: NEPRHOLOGY</p> --}}
+            <p>Generic Name: </p>
             <p>Brand Name: KETOANALOGUES</p>
             <p>Package Style: BOX OF 100’S</p>
             <p>Market Price: 55.00</p>
             <p>Discount: 19.25</p>
-            <p>Price: 35.75</p>
+            <p>Market Price: 35.75</p>
         </div>
         
 
