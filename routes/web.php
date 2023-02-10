@@ -42,7 +42,12 @@ Route::get('user/addproduct', function(){
 // Route::get('user/single-prod/{id}', [ProductController::class, 'singleprod']);
 Route::get('user/single-prod/{id}', [ProductController::class, 'singleprod'])->name('single-prod');
 
+// Route::post('user/update-prod', function(){
+//     return view('user/update-prod');
+// });
 Route::get('user/update-prod', [ProductController::class, 'updateprod']);
+
+
 Route::get('user/view-user', [ProductController::class, 'viewuser']);
 
 // SINGLE ROUTE

@@ -35,7 +35,7 @@ class ProductController extends Controller
             'brand_name' => 'required',
             'product_form' => 'required',
             'market_price' => 'required',
-            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image_path' => '|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
    
         $input = $request->all();
@@ -72,6 +72,8 @@ class ProductController extends Controller
         return view('user.update-prod', compact('products'));
 
     }
+
+
 
     public function addproduct() {
         return view('user.addproduct');
