@@ -42,7 +42,9 @@ class ProductController extends Controller
    
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            // $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = $request->generic_name . "_".$request->brand_name."." . $image->getClientOriginalExtension();
+
             $image->move($destinationPath, $profileImage);
             $input['image_path'] = "$profileImage";
         }
