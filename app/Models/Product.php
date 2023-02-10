@@ -15,8 +15,11 @@ class Product extends Model
 
     public function scopeFilter($query, array $filters){
         if($filters['search'] ?? false) {
-            $query->where('generic_name', 'like', '%' . $filters['search'] . '%')
-            ->orWhere('brand_name', 'like', '%' . $filters['search'] . '%');
+            $query->where('generic_name', 'like',  $filters['search'] )
+            ->orWhere('brand_name', 'like',  $filters['search'] );
+
+            // $query->where('generic_name', 'like', '%' . $filters['search'] . '%')
+            // ->orWhere('brand_name', 'like', '%' . $filters['search'] . '%');
         }
     }
 }
