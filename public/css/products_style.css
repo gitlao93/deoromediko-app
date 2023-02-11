@@ -6,7 +6,7 @@ min-width: 1281px	                    extra large resolutions (or xl)	          
 
 .product-search-container {
     background: #d6d7d81c;
-    height: 30vh;
+    min-height: 30vh;
 }
 
 .product-search-wrapper {

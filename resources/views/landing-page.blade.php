@@ -27,12 +27,8 @@
             <div class="about-desc-container">
 
                 <h2>About De Oro Mediko</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore obcaecati,
-                    suscipit itaque voluptatibus corrupti iusto perspiciatis adipisci inventore
-                    mollitia hic nostrum accusantium commodi quas eius similique voluptatum magnam
-                    aut sapiente!<br>orem, ipsum dolor sit amet consectetur adipisicing elit. Labore obcaecati,
-                    suscipit itaque voluptatibus corrupti iusto perspiciatis adipisci inventore
-                    mollitia hic nostrum accusantium
+                <p>Distributor for high quality and affordable price for<br>Hormones Replacement Therapy (HRT) ,<br>
+                     Cancer and Dialysis medicines.
                 </p>
 
             </div>
