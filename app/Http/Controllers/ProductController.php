@@ -23,10 +23,6 @@ class ProductController extends Controller
  
     }
 
-    // public function create() {
-    //     return view('add-prod');
-    // }
-
 
     public function store(Request $request)
     {
@@ -53,36 +49,11 @@ class ProductController extends Controller
                         ->with('success','Product created successfully.');
     }
 
-    public function singleprod() {
-        return view('user.single-prod');
-    }
-
-    public function updateprod(Request $request) {
-
-        $filters = $request->only(['search']);
-        $products = Product::filter($filters)->get();
-
-        return view('user.update-prod', compact('products'));
-
-    }
-
     public function addproduct() {
         return view('user.addproduct');
     }
 
-    public function viewuser() {
-        return view('user.view-user');
-    }
 
-
-    public function dashboard(Request $request) {
-
-        $filters = $request->only(['search']);
-        $products = Product::filter($filters)->get();
-
-        return view('user.dashboard', compact('products'));
-
-    }
 
 
     
