@@ -12,7 +12,8 @@ class ProductController extends Controller
         
 
         $filters = $request->only(['search']);
-        $products = Product::filter($filters)->get();
+        $products = Product::filter($filters)->paginate(5);
+        ;
 
         return view('products', compact('products'));
        
