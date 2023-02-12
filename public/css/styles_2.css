@@ -54,8 +54,18 @@ h1,h2,h3,h4,h5,h6 {
     background: #2192FF;
     border-radius: 10px;
     text-align: center;
-    padding: 10px;
+    padding: 10px 15px;
     color: white;
+    display: flex;
+    align-items: center;
+}
+
+.header-contactbtn-container i {
+    display: none;
+}
+
+.header-contactbtn-container p {
+    margin: 0;
 }
 
 
@@ -368,4 +378,47 @@ h1,h2,h3,h4,h5,h6 {
         justify-content: center;
         padding-left: 20px;
     }
+}
+
+
+@media (max-width: 768px) {
+    .hero-banner-container {
+        min-height: 70vh !important;
+        padding: 50px 0;
+    }
+    .hero-banner-container .search-box-container {
+        background: #ffffffa6;
+    }
+    .hero-banner-container .search-box-container h1 {
+        text-align: center;
+    }
+    
+    .hero-banner-container .search-box-container p {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .hero-banner-container .search-box-container #view-all {
+        display: flex;
+        margin: 0 auto !important;
+        justify-content: center;
+    }
+    
+     .hero-banner-container .input-box {
+         width: 100% !important;
+     }
+
+     .hero-banner-container .input-box input {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .header-contactbtn-container i {
+        display: block;
+    }
+    
+    .header-contactbtn-container p {
+        display: none;
+    }
+    
 }

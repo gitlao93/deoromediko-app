@@ -18,7 +18,8 @@
                 <div class="product-card">
 
                     <div class="product-card-image-wrapper"> 
-                        <img src="{{ $list->image_path != null ? asset('/images/'.$list->image_path) : asset('/images/no-photo-available1350441335.png') }}" alt="Product_image" class="img-in-card ">
+                        <img src="{{ $list->image_path != null ? asset('/images/productImages/'.$list->image_path) : asset('/images/DeOroMekidkoIcon.png') }}" alt="Product_image" class="img-in-card ">
+                       
                     </div>
                     <div class="product-card-info-wrapper">
                         <div class="info">

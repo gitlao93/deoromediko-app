@@ -6,6 +6,6 @@
         </div>
     </div>
     <div class="header-contactbtn-container">
-        <a href="tel:09172052719" class="contact-btn">Contact Us</a>
+        <a href="tel:09172052719" class="contact-btn"><i class="fa-solid fa-phone-volume"></i><p>Contact Us</p></a>
     </div>
 </header>

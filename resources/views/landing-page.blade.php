@@ -11,11 +11,11 @@
                     to
                     those in need.</p>
                 <a id="view-all" href="/products">View all products</a>
-                <form action="/products">
+                <form class="search-box" action="/products/">
                     <div class="input-box">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                        <input type="text" placeholder="search medicine..." name="search" />
-                        <button class="button">Search</button>
+                        <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                        <input type="text" placeholder="Mag search ng gamot..." name="search" />
+                        <button class="button"><i class="fa fa-search icon-btn" aria-hidden="true"></i><span>Search</span></button>
                     </div>
                 </form>
         </section>

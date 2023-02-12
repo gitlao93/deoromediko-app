@@ -19,3 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/products', [ProductController::class, 'index']);
+
+Route::post('/addProduct', [ProductController::class, 'store']);
+
+Auth::routes();
+
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');

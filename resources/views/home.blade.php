@@ -1,4 +1,4 @@
-<x-layout>
+<x-app>
     {{-- hero banner --}}
     <section class="hero-banner-home">
         <div class="vh-100 main-content flex-row">
@@ -58,4 +58,4 @@
 
     </section>
 
-</x-layout>
+</x-app>
