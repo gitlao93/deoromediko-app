@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/products', [ProductController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
