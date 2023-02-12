@@ -148,7 +148,7 @@ min-width: 1281px	                    extra large resolutions (or xl)	          
 
     .input-box input {
         width: 100%;
-        padding: 0
+        padding: 0 10px;
     }
 
     .input-box .search-icon {

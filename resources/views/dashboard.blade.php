@@ -1,4 +1,5 @@
 <x-app>
+    <div style="height: 100vh;" class="d-flex align-items-center justify-content-center">
     <form action="/addProduct" method="POST" enctype="multipart/form-data" class="card" style="width: 350px; margin: 0 auto; padding: 20px; height: 400px; display: flex;">
         @csrf
          
@@ -40,4 +41,5 @@
         </div>
           
     </form>
+    </div>
 </x-app>

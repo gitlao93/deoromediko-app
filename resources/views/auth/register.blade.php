@@ -2,6 +2,12 @@
 
 @section('content') --}}
 <x-app>
+    @guest
+    <div style="height: 100vh;" class="d-flex align-items-center justify-content-center" >
+       
+         <h1 class="bg-danger text-wrap text-center align-middle">You're not allowed to register to this appplication</h1>
+    </div>
+    @else
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -76,5 +82,5 @@
     </div>
 </div>
 
-
+@endguest
 </x-app>

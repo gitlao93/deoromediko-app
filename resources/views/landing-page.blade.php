@@ -2,7 +2,7 @@
     <main class="main-container">
         <section class="hero-banner-container">
             <div class="hero-banner-dummy-container"></div>
-            <div class="search-box-container product-search-wrapper">
+            <div class="search-box-container">
                 <h1>De Oro Mediko Drug<br>Distribution services</h1>
                 <p>Welcome to <b>De Oro Mediko Drug Distribution Services</b>, your trusted partner in
                     providing
