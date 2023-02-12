@@ -2,7 +2,7 @@
     <main class="main-container">
         <section class="hero-banner-container">
             <div class="hero-banner-dummy-container"></div>
-            <div class="search-box-container">
+            <div class="search-box-container product-search-wrapper">
                 <h1>De Oro Mediko Drug<br>Distribution services</h1>
                 <p>Welcome to <b>De Oro Mediko Drug Distribution Services</b>, your trusted partner in
                     providing
@@ -11,11 +11,11 @@
                     to
                     those in need.</p>
                 <a id="view-all" href="/products">View all products</a>
-                <form action="/products">
+                <form class="search-box" action="/products/">
                     <div class="input-box">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                        <input type="text" placeholder="search medicine..." name="search" />
-                        <button class="button">Search</button>
+                        <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                        <input type="text" placeholder="Mag search ng gamot..." name="search" />
+                        <button class="button"><i class="fa fa-search icon-btn" aria-hidden="true"></i><span>Search</span></button>
                     </div>
                 </form>
         </section>
