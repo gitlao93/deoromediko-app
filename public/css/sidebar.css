@@ -176,7 +176,7 @@ input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 .logo-design {
     display: flex;
     gap: 10px;
-    padding: 10px;
+    padding: 30px 10px 10px 10px;
 }
 
 /* PRODUCT CSS */
