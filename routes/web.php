@@ -28,27 +28,12 @@ Route::get('/', function () {
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('user/dashboard', [ProductController::class, 'dashboard']);
 
-// Route::get('user/dashboard/{id}', function($id){
-//     return view('user/single-prod'. $id);
-// });
-
-// Route::get('user/dashboard/{id}', [ProductController::class, 'singleprod']);
-
-
 Route::post('user/addproduct', [ProductController::class, 'store']);
-Route::get('user/addproduct', function(){
+Route::get('user/addproduct', function () {
     return view('user/addproduct');
 });
-// Route::get('user/single-prod/{id}', [ProductController::class, 'singleprod']);
 Route::get('user/single-prod/{id}', [ProductController::class, 'singleprod'])->name('single-prod');
 
-// Route::post('user/update-prod', function(){
-//     return view('user/update-prod');
-// });
 Route::get('user/update-prod', [ProductController::class, 'updateprod']);
-
-
+Route::put('/user/update-prod/{product}', [ProductController::class, 'update'])->name('update');
 Route::get('user/view-user', [ProductController::class, 'viewuser']);
-
-// SINGLE ROUTE
-// Route::get('user/single-prod/', [ProductController::class, 'singleprod']);
