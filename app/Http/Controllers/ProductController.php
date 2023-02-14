@@ -36,19 +36,18 @@ class ProductController extends Controller
             'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
    
-        $input;
+        $input = $request->all();
    
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/productImages';
             $profileImage = $request->generic_name . "_" . $request->brand_name . "_" . date('Ymd') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
+            $input['image_path'] = $profileImage;
             
         }else {
             $input['image_path'] = null;
         }
         
-        $input = $request->all();
-        $input['image_path'] = $profileImage;
         Product::create($input);
       
         return redirect('/dashboard')
