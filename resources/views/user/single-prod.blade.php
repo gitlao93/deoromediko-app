@@ -19,9 +19,9 @@
 
     </div>
    
-    <div class="submit-btn">
+    {{-- <div class="submit-btn">
         <button type="button" data-toggle="modal" data-target="#update" class="btn btn-primary" style="width: 350px;">Update Product</button>
-    </div>
+    </div> --}}
 </div>
 
 </x-main>

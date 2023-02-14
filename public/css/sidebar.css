@@ -24,9 +24,10 @@ body {
     z-index: 10;
     display: flex;
     justify-content: flex-end;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
 .main {
-    max-width: 950px; /* Can be in percentage also. */
+    max-width: 900px; /* Can be in percentage also. */
     height: 100%;
     margin: 0 auto;
     padding: 150px 10px;
@@ -92,8 +93,9 @@ body {
 .sidebarMenuInner li a:hover {
     color: #00933c;
 }
+
 input[type="checkbox"]:checked ~ #sidebarMenu {
-    /* transform: translateX(0); */
+    transform: translateX(0);
     transform: translateX(-280px);
 }
 
@@ -110,10 +112,10 @@ input[type="checkbox"] {
     z-index: 99;
     height: 100%;
     width: 100%;
-    /* top: 22px;
-    left: 15px; */
-    top: 5%;
-    left: 19%;
+    top: 30px;
+    left: 15px;
+    /* top: 5%;
+    left: 19%; */
     height: 22px;
     width: 22px;
 }
@@ -121,8 +123,9 @@ input[type="checkbox"] {
     transition: all 0.3s;
     box-sizing: border-box;
     position: absolute;
-    height: 3px;
-    width: 100%;
+    height: 4px;
+    /* width: 100%; */
+    width: 25px;
     background-color: #00933c;
 }
 .horizontal {
@@ -170,13 +173,14 @@ input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 }
 
 .logo-design h1 {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .logo-design {
     display: flex;
     gap: 10px;
-    padding: 10px;
+    padding: 80px 10px 10px 10px;
+    align-items: center;
 }
 
 /* PRODUCT CSS */
@@ -218,6 +222,17 @@ input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 
 .product-wrap {
     flex: 0 0 30%;
+    position: relative;
+}
+
+.out-of-stock {
+    color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    font-weight: bold;
 }
 
 /* HEADER CSS */
@@ -390,4 +405,42 @@ input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.overlay {
+    position: relative;
+    z-index: 0;
+}
+
+.overlay a::before,
+.overlay > div:nth-child(1):before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: rgba(255, 249, 249, 0.63);
+    z-index: 1;
+    border-radius: 30px;
+}
+
+.stock-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* RESPONSIVENESS */
+
+@media (max-width: 992px) {
+    .product-wrap {
+        flex: 0 0 45%;
+    }
+}
+
+@media (max-width: 666px) {
+    .product-wrap {
+        flex: 0 0 100%;
+    }
 }
