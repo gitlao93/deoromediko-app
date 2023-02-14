@@ -12,18 +12,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
-    <x-sidebar />
-    <div id='center' class="main center">
+    
+    <div class="container-parent">
+       
         {{ $slot }}
     </div>
     {{-- <x-modal/> --}}
@@ -41,6 +44,24 @@
     </script>
 
 
+<script>
+    const menuBtn = document.getElementById("menu-btn");
+    const container = document.querySelector(".container-parent");
+
+    menuBtn.addEventListener("click", function() {
+        container.classList.toggle("menu-open");
+    });
+    
+</script>
+
+<script>
+    const resizeBtn = document.getElementById("resize-btn");
+    const container2 = document.querySelector(".container-parent");
+
+    resizeBtn.addEventListener("click", function() {
+    container2.classList.toggle("resize-right");
+    });
+</script>
 </body>
 
 
