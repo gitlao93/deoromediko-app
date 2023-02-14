@@ -37,3 +37,5 @@ Route::get('user/single-prod/{id}', [ProductController::class, 'singleprod'])->n
 Route::get('user/update-prod', [ProductController::class, 'updateprod']);
 Route::put('/user/update-prod/{product}', [ProductController::class, 'update'])->name('update');
 Route::get('user/view-user', [ProductController::class, 'viewuser']);
+Route::post('/user/update-prod/{id}', [ProductController::class, 'updatestock'])->name('updatestock');
+

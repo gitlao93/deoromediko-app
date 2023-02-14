@@ -107,4 +107,21 @@ class ProductController extends Controller
 
         return redirect('user/update-prod')->with('success', 'Product updated successfully.');
     }
+
+    public function updatestock(Request $request, $id)
+    {
+
+        $status = $request->input('status');
+        // $status = ($status == 'yes') ? 1 : 0;
+
+        
+        
+        $record = Product::find($id);
+        $record->status = $status;
+        $record->save();
+        
+     
+
+        return redirect('user/update-prod')->with('success', 'Product updated successfully.');
+    }
 }

@@ -4,7 +4,7 @@
 <x-main>
 
     <div class="mainInner">
-        Sort By: <input class="search-box" placeholder="Division">
+        {{-- Sort By: <input class="search-box" placeholder="Division"> --}}
 
         <div class="product-container">
 
