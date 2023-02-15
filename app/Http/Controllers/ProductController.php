@@ -19,8 +19,11 @@ class ProductController extends Controller
        
     }
 
-    public function showAll() {
-        return view('products',['productLists' => Product::all()]);
+    public function showAll(Request $request) {
+        $filters = $request->only(['search']);
+        $products = Product::filter($filters)->get();
+
+        return view('dashboard', compact('products'));
  
     }
 
@@ -59,7 +62,32 @@ class ProductController extends Controller
     }
 
 
+    public function update(Request $request, Product $product)
+    {
+        // dd($request);
+        $request->validate([
+            'generic_name' => 'required',
+            'brand_name' => 'required',
+            'product_form' => 'required',
+            'market_price' => 'required',
+            'image_path' => '|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
+        $input = $request->all();
+
+        if ($image = $request->file('image_path')) {
+            $destinationPath = 'images/productImages';
+            $profileImage = $request->generic_name . '_' . $request->brand_name . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image_path'] = "$profileImage";
+        } else {
+            unset($input['image_path']);
+        }
+
+        $product->update($input);
+
+        return redirect('dashboard')->with('success', 'Product updated successfully.');
+    }
 
     
 }
