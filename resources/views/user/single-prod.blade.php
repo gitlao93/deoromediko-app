@@ -9,15 +9,18 @@
                 </div>
 
 
-                <div class="prod-info">
+                <div class="prod-info ">
 
                     <img src="{{ $products->image_path != null ? asset('/images/' . $products->image_path) : asset('/images/no-photo-available1350441335.png') }}"
-                        alt="Product_image" class="img-in-card ">
+                        alt="Product_image" class="img-in-card {{ $products->status == 1 ? 'overlay' : '' }}">
                     <div>
                         <p>Generic Name: <b>{{ $products->generic_name }}</b></p>
                         <p>Brand Name: <b>{{ $products->brand_name }}</b></p>
                         <p>Package Style: <b>{{ $products->product_form }}</b></p>
                         <p>Market Price: <b>&#8369;{{ $products->market_price }}</b></p>
+                        @if ($products->status == 1)
+                            <h5 style="color: red;">OUT OF STOCK!</h5>
+                        @endif
 
                     </div>
 

@@ -49,7 +49,9 @@ body {
 }
 
 .side-nav {
-    grid-area: side-nav;
+    /* grid-area: side-nav; */
+    position: sticky;
+    top: 0;
     background: #fff;
     padding: 10px 20px;
     display: flex;
@@ -120,7 +122,9 @@ body {
     flex-direction: row-reverse;
     align-items: center;
     padding: 10px 20px;
-    height: 60px;
+    height: 70px;
+    position: sticky;
+    top: 0;
 }
 
 .container-parent.menu-open {
@@ -144,6 +148,7 @@ body {
 #menu-btn {
     transition: transform 1s ease;
     font-size: 28px;
+    cursor: pointer;
 }
 
 .container-parent.resize-right #resize-btn {
@@ -222,7 +227,7 @@ body {
 .content-section {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
     /* padding-top: 2em; */
 }
@@ -387,6 +392,35 @@ body {
 .prod-info {
     display: flex;
     gap: 20px;
+    align-items: center;
+}
+
+/* VIEW USER CSS */
+
+.user-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    border: 2px solid #2192ff;
+    padding: 40px 50px;
+    border-radius: 30px;
+    height: auto;
+    box-shadow: 4px 6px 15px 2px rgba(0, 0, 0, 0.34);
+}
+
+.user-info img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user-info {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
