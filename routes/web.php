@@ -25,3 +25,5 @@ Route::post('/addProduct', [ProductController::class, 'store']);
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [App\Http\Controllers\ProductController::class, 'showAll'])->name('dashboard');
+Route::put('/dashboard/{product}', [ProductController::class, 'update'])->name('update');
