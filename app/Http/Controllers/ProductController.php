@@ -7,26 +7,20 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-
-    public function index(Request $request) {
-        
-
+    public function index(Request $request)
+    {
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->paginate(5);
-        ;
-
         return view('products', compact('products'));
-       
     }
 
-    public function showAll(Request $request) {
+    public function showAll(Request $request)
+    {
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->get();
 
-        return view('dashboard', compact('products'));
- 
+        return view('admin.dashboard', compact('products'));
     }
-
 
     public function store(Request $request)
     {
@@ -38,29 +32,35 @@ class ProductController extends Controller
             'market_price' => 'required',
             'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-   
+
         $input = $request->all();
-   
+
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/productImages';
-            $profileImage = $request->generic_name . "_" . $request->brand_name . "_" . date('Ymd') . "." . $image->getClientOriginalExtension();
+            $profileImage = $request->generic_name . '_' . $request->brand_name . '_' . date('Ymd') . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image_path'] = $profileImage;
-            
-        }else {
+        } else {
             $input['image_path'] = null;
         }
-        
+
         Product::create($input);
-      
-        return redirect('/dashboard')
-                        ->with('success','Product created successfully.');
+
+        return redirect('admin/dashboard')->with('success', 'Product created successfully.');
     }
 
-    public function addproduct() {
-        return view('user.addproduct');
+    public function addproduct()
+    {
+        return view('user.add-prod');
     }
 
+    public function updateprod(Request $request)
+    {
+        $filters = $request->only(['search']);
+        $products = Product::filter($filters)->get();
+
+        return view('admin.update-prod', compact('products'));
+    }
 
     public function update(Request $request, Product $product)
     {
@@ -86,8 +86,32 @@ class ProductController extends Controller
 
         $product->update($input);
 
-        return redirect('dashboard')->with('success', 'Product updated successfully.');
+        return redirect('admin/dashboard')->with('success', 'Product updated successfully.');
     }
 
-    
+    public function updatestock(Request $request, $id)
+    {
+        $status = $request->input('status');
+        // $status = ($status == 'yes') ? 1 : 0;
+
+        $record = Product::find($id);
+        $record->status = $status;
+        $record->save();
+
+        return redirect('admin/update-prod')->with('success', 'Product updated successfully.');
+    }
+
+    public function singleprod($id)
+    {
+        // $filters = $id->only(['search']);
+
+        $products = Product::where('product_ID', $id)->first();
+
+        return view('admin.single-prod', compact('products'));
+    }
+
+    public function viewuser()
+    {
+        return view('admin.view-user');
+    }
 }
