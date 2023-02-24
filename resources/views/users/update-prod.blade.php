@@ -14,7 +14,6 @@
                 </select> --}}
 
                 <div class="product-container">
-                   
 
                     @foreach ($products as $list)
                         <div class="product-wrap {{ $list->status == 1 ? 'overlay' : '' }}">
@@ -34,7 +33,7 @@
                                     Update Product
                                 </button>
 
-                                @if ($list->status == 0)
+                                {{-- @if ($list->status == 0)
                                     <form method="POST" action="{{ route('updatestock', $list->product_ID) }}">
                                         @csrf
                                         <input type="hidden" name="status" id="status" value="1">
@@ -52,14 +51,14 @@
                                             In Stock
                                         </button>
                                     </form>
-                                @endif
+                                @endif --}}
 
                             </div>
 
 
                         </div>
 
-                        <x-update-modal :list=$list />
+                        <x-users-update :list=$list />
                         {{-- <x-out-of-stock :list=$list /> --}}
                     @endforeach
                 </div>

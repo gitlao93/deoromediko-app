@@ -5,19 +5,13 @@
 
     <div class="content">
         <div class="content-section">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p class="m-0">{{ $message }}</p>
-                </div>
-            @endif
             <div class="product-container">
-              
                 @foreach ($products as $list)
                     <div class="product-wrap {{ $list->status == 1 ? 'overlay' : '' }}">
                         <a href="{{ url('/admin/single-prod' . '/' . $list->product_ID) }}">
 
                             <img src="{{ $list->image_path != null ? asset('/images/productImages/' . $list->image_path) : asset('/images/logo.png') }}"
-                                alt="Product_image" class="img-in-card ">
+                        alt="Product_image" class="img-in-card ">
 
 
                             <h5 style="color: #000;">{{ $list->generic_name }}</h5>

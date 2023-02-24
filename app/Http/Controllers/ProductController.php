@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // ADMIN CONTROLLER
     public function index(Request $request)
     {
         $filters = $request->only(['search']);
@@ -24,7 +29,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $request->validate([
             'generic_name' => 'required',
             'brand_name' => 'required',
@@ -38,7 +42,12 @@ class ProductController extends Controller
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/productImages';
             $profileImage = $request->generic_name . '_' . $request->brand_name . '_' . date('Ymd') . '.' . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
+
+            // Resize the image using Intervention Image
+            $image = Image::make($image);
+            $image->resize(800, 600);
+            $image->save($destinationPath . '/' . $profileImage, 60);
+
             $input['image_path'] = $profileImage;
         } else {
             $input['image_path'] = null;
@@ -110,8 +119,66 @@ class ProductController extends Controller
         return view('admin.single-prod', compact('products'));
     }
 
-    public function viewuser()
+    public function viewuser(Request $request)
     {
-        return view('admin.view-user');
+        $filters = $request->only(['search']);
+        $users = User::filter($filters)->get();
+
+        return view('admin.view-user', compact('users'));
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect('admin/dashboard')->with('success', 'Product deleted successfully.');
+    }
+
+    //  ADD NEW USER
+    public function storeuser(Request $request)
+    {
+        //  dd($request);
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'user_type' => 'required|in:user,admin',
+        ]);
+
+        $input = $request->only(['name', 'email', 'user_type']);
+        $input['password'] = Hash::make($request->input('password'));
+        User::create($input);
+
+        return redirect('admin/view-user')->with('success', 'User added successfully.');
+    }
+
+    // UPDATE USER
+    public function updateuser(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'user_type' => 'required|in:user,admin',
+            'password' => 'required|nullable|string|min:8|confirmed',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->user_type = $validatedData['user_type'];
+        if ($request->filled('password')) {
+            $user->password = Hash::make($validatedData['password']);
+        }
+        $user->save();
+
+        return redirect('admin/view-user')->with('success', 'User updated successfully.');
+    }
+
+    // DELETE USER
+    public function deleteuser($id)
+    {
+        $users = User::findOrFail($id);
+        $users->delete();
+        return redirect('admin/view-user')->with('success', 'User deleted successfully.');
     }
 }
