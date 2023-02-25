@@ -52,4 +52,5 @@ Route::middleware(['auth', 'user.type:user'])->group(function () {
     Route::put('users/update-prod/{product}', [UserController::class, 'userupdate'])->name('userupdate');
     Route::get('users/update-prod', [UserController::class, 'userupdateprod']);
     Route::post('users/update-prod/{id}', [UserController::class, 'usersupdatestock'])->name('usersupdatestock');
+    Route::get('users/single-prod/{id}', [UserController::class, 'singleprod'])->name('single-prod');
 });

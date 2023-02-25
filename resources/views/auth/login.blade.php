@@ -18,7 +18,7 @@
                    
                             {{-- <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label> --}}
                             <div class="pb-5" style=" margin: 0 auto !important;">
-                            <img id="icon" src="{{ asset('/images/DeOroMedikoIcon.png') }}" alt="logo" style="width: 150px; object-fit: contain;"/>
+                            <a href="/"><img id="icon" src="{{ asset('/images/DeOroMedikoIcon.png') }}" alt="logo" style="width: 150px; object-fit: contain;"/></a>
                         </div>
                             <div class="form-group">
                                 <input id="email" type="email" placeholder="Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

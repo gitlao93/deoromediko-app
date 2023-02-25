@@ -72,6 +72,15 @@ class UserController extends Controller
          return redirect('users/update-prod')->with('success', 'Product updated successfully.');
      }
 
+     public function singleprod($id)
+     {
+         // $filters = $id->only(['search']);
+ 
+         $products = Product::where('product_ID', $id)->first();
+ 
+         return view('users.single-prod', compact('products'));
+     }
+
 
 
   

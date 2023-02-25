@@ -33,8 +33,8 @@
                                     Update Product
                                 </button>
 
-                                {{-- @if ($list->status == 0)
-                                    <form method="POST" action="{{ route('updatestock', $list->product_ID) }}">
+                                @if ($list->status == 0)
+                                    <form method="POST" action="{{ route('usersupdatestock', $list->product_ID) }}">
                                         @csrf
                                         <input type="hidden" name="status" id="status" value="1">
                                         <button type="submit" class="btn btn-danger" data-toggle="modal"
@@ -43,7 +43,7 @@
                                         </button>
                                     </form>
                                 @elseif ($list->status == 1)
-                                    <form method="POST" action="{{ route('updatestock', $list->product_ID) }}">
+                                    <form method="POST" action="{{ route('usersupdatestock', $list->product_ID) }}">
                                         @csrf
                                         <input type="hidden" name="status" id="status" value="0">
                                         <button type="submit" class="btn btn-success" data-toggle="modal"
@@ -51,7 +51,7 @@
                                             In Stock
                                         </button>
                                     </form>
-                                @endif --}}
+                                @endif
 
                             </div>
 

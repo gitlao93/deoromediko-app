@@ -725,12 +725,12 @@ nav a {
         border-radius: 30px;
     }
 
-    .header-wrapper .input-box .search {
+    /* .header-wrapper .input-box .search {
         display: none;
-    }
+    } */
 
     .header-wrapper .input-box {
-        width: 150px;
+        width: 300px;
     }
 
     .content {
@@ -768,6 +768,14 @@ nav a {
 
     .header-wrapper h3,
     .header-wrapper img {
+        display: none;
+    }
+
+    .header-wrapper .input-box {
+        width: 200px;
+    }
+
+    .input-box i {
         display: none;
     }
 }
