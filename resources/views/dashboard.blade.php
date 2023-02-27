@@ -130,6 +130,7 @@
             <x-update-modal :list=$list />
             {{-- <x-out-of-stock :list=$list /> --}}
         @endforeach
+      
         {{ $products->links() }}
         </div>
     </div>
