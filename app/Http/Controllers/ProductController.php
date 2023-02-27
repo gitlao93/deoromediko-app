@@ -41,16 +41,25 @@ class ProductController extends Controller
    
         $input = $request->all();
    
+        // if ($image = $request->file('image_path')) {
+        //     $destinationPath = 'images/productImages';
+        //     $profileImage = $request->generic_name . "_" . $request->brand_name . "_" . date('Ymd') . "." . $image->getClientOriginalExtension();
+        //     $image->move($destinationPath, $profileImage);
+        //     $input['image_path'] = $profileImage;
+            
+        // }else {
+        //     $input['image_path'] = null;
+        // }
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/productImages';
-            $profileImage = $request->generic_name . "_" . $request->brand_name . "_" . date('Ymd') . "." . $image->getClientOriginalExtension();
+            $genericName = str_replace('/', '_', $request->generic_name);
+            $brandName = str_replace('/', '_', $request->brand_name);
+            $profileImage = $genericName . '_' . $brandName . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image_path'] = $profileImage;
-            
-        }else {
-            $input['image_path'] = null;
+        } else {
+            unset($input['image_path']);
         }
-        
         Product::create($input);
       
         return redirect('/dashboard')
@@ -75,11 +84,22 @@ class ProductController extends Controller
 
         $input = $request->all();
 
+        // if ($image = $request->file('image_path')) {
+        //     $destinationPath = 'images/productImages';
+        //     $profileImage = $request->generic_name . '_' . $request->brand_name . '.' . $image->getClientOriginalExtension();
+        //     $image->move($destinationPath, $profileImage);
+        //     $input['image_path'] = "$profileImage";
+        // } else {
+        //     unset($input['image_path']);
+        // }
+
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/productImages';
-            $profileImage = $request->generic_name . '_' . $request->brand_name . '.' . $image->getClientOriginalExtension();
+            $genericName = str_replace('/', '_', $request->generic_name);
+            $brandName = str_replace('/', '_', $request->brand_name);
+            $profileImage = $genericName . '_' . $brandName . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['image_path'] = "$profileImage";
+            $input['image_path'] = $profileImage;
         } else {
             unset($input['image_path']);
         }
