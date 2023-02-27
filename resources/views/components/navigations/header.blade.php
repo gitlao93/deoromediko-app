@@ -1,14 +1,25 @@
 <div class="header">
     <div class="header-wrapper">
         <!-- <input type="text" placeholder="Category Selection" class="search-box"> -->
-        <form class="search-box" action="/admin/dashboard/">
-            <div class="input-box">
+        @if (auth()->user()->user_type == 'admin')
+            <form class="search-box" action="/admin/dashboard/">
+                <div class="input-box">
 
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <input type="text" placeholder="Search Product" class="search" name="search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="text" placeholder="Search Product" class="search" name="search">
 
-            </div>
-        </form>
+                </div>
+            </form>
+        @else
+            <form class="search-box" action="/users/dashboard/">
+                <div class="input-box">
+
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="text" placeholder="Search Product" class="search" name="search">
+
+                </div>
+            </form>
+        @endif
         {{-- <h3>{{ Auth::user()->name }}</h3> --}}
         <div class="dropdown show">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"

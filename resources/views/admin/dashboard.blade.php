@@ -5,6 +5,7 @@
 
     <div class="content">
         <div class="content-section">
+
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     <p class="m-0">{{ $message }}</p>

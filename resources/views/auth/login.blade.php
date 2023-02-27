@@ -1,6 +1,9 @@
 {{-- @extends('layouts.app')
 
 @section('content') --}}
+@section('title')
+    {{ 'De Oro Mediko - Login' }}
+@endsection
 <x-app>
 <div class="login-container">
     {{-- <div class="row justify-content-center">
