@@ -38,10 +38,11 @@ class ProductController extends Controller
         ]);
 
         $input = $request->all();
-
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/productImages';
-            $profileImage = $request->generic_name . '_' . $request->brand_name . '_' . date('Ymd') . '.' . $image->getClientOriginalExtension();
+            $genericName = str_replace('/', '_', $request->generic_name);
+            $brandName = str_replace('/', '_', $request->brand_name);
+            $profileImage = $genericName . '_' . $brandName . '_' . date('Ymd') . '.' . $image->getClientOriginalExtension();
 
             // Resize the image using Intervention Image
             $image = Image::make($image);
@@ -91,10 +92,14 @@ class ProductController extends Controller
             $profileImage = $genericName . '_' . $brandName . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image_path'] = $profileImage;
+
+            // Compress the uploaded image
+            $image = Image::make(public_path($destinationPath . '/' . $profileImage));
+            $image->encode('jpg', 60);
+            $image->save(public_path($destinationPath . '/' . $profileImage));
         } else {
             unset($input['image_path']);
         }
-        
 
         $product->update($input);
 
@@ -160,7 +165,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'user_type' => 'required|in:user,admin',
             'password' => 'required|nullable|string|min:8|confirmed',
         ]);
