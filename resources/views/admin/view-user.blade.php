@@ -18,6 +18,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Profile</th>
                                 <th>Type</th>
                                 <th>Action</th>
                             </tr>
@@ -26,6 +27,8 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td>{{ $user->name }}</td>
+                                    <td><img src="{{ $user->profile_image != null ? asset('/images/profileImgs/' . $user->profile_image) : asset('/images/logo.png') }}"
+                                        alt="Product_image" class="img-in-card "></td>
                                     <td>{{ $user->user_type }}</td>
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"

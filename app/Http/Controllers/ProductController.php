@@ -16,7 +16,9 @@ class ProductController extends Controller
     {
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->paginate(5);
+        $users = User::filter($filters);
         return view('products', compact('products'));
+     
     }
 
     public function showAll(Request $request)
@@ -150,20 +152,40 @@ class ProductController extends Controller
     //  ADD NEW USER
     public function storeuser(Request $request)
     {
-        //  dd($request);
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'user_type' => 'required|in:user,admin',
+            'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-
+    
         $input = $request->only(['name', 'email', 'user_type']);
         $input['password'] = Hash::make($request->input('password'));
-        User::create($input);
-
+        $user = User::create($input);
+    
+        // Handle profile image upload
+        if ($request->hasFile('profile_image')) {
+            $destinationPath = 'images/profileImgs';
+            $file = $request->file('profile_image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($destinationPath), $filename);
+    
+            // Resize the image to a smaller size
+            $image = Image::make(public_path($destinationPath . '/' . $filename));
+            $image->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $image->save(public_path($destinationPath . '/' . $filename));
+    
+            // Update user record with profile image filename
+            $user->profile_image = $filename;
+            $user->save();
+        }
+    
         return redirect('admin/view-user')->with('success', 'User added successfully.');
     }
+    
 
     // UPDATE USER
     public function updateuser(Request $request, $id)
@@ -172,7 +194,8 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'user_type' => 'required|in:user,admin',
-            'password' => 'required|nullable|string|min:8|confirmed',
+            'password' => 'nullable|string|min:8|confirmed',
+            'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $user = User::findOrFail($id);
@@ -183,6 +206,18 @@ class ProductController extends Controller
             $user->password = Hash::make($validatedData['password']);
         }
         $user->save();
+
+        // Handle profile image upload
+        if ($request->hasFile('profile_image')) {
+            $destinationPath = 'images/profileImgs';
+            $file = $request->file('profile_image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($destinationPath), $filename);
+
+            // Update user record with profile image filename
+            $user->profile_image = $filename;
+            $user->save();
+        }
 
         return redirect('admin/view-user')->with('success', 'User updated successfully.');
     }

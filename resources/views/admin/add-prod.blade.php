@@ -17,7 +17,7 @@
 
                             <input value="{{ old('generic_name') }}" placeholder="Generic Name" id="generic_name"
                                 type="text" class="form-control @error('generic_name') is-invalid @enderror"
-                                name="generic_name" value="{{ old('generic_name') }}"" autocomplete="generic_name"
+                                name="generic_name" value="{{ old('generic_name') }}" autocomplete="generic_name"
                                 autofocus>
                             @error('generic_name')
                                 <span class="invalid-feedback" role="alert" style="color: red;">
@@ -31,7 +31,7 @@
 
                             <input value="{{ old('brand_name') }}" placeholder="Brand Name" id="brand_name"
                                 type="text" class="form-control @error('brand_name') is-invalid @enderror"
-                                name="brand_name" value="{{ old('brand_name') }}"" autocomplete="brand_name" autofocus>
+                                name="brand_name" value="{{ old('brand_name') }}" autocomplete="brand_name" autofocus>
                             @error('brand_name')
                                 <span class="invalid-feedback" role="alert" style="color: red;">
                                     <strong>{{ $message }}</strong>
@@ -43,7 +43,7 @@
 
                             <input value="{{ old('product_form') }}" placeholder="Product Form" id="product_form"
                                 type="text" class="form-control @error('product_form') is-invalid @enderror"
-                                name="product_form" value="{{ old('product_form') }}"" autocomplete="product_form"
+                                name="product_form" value="{{ old('product_form') }}" autocomplete="product_form"
                                 autofocus>
                             @error('product_form')
                                 <span class="invalid-feedback" role="alert" style="color: red;">
@@ -58,7 +58,7 @@
 
                             <input value="{{ old('market_price') }}" placeholder="Market Price" id="market_price"
                                 type="text" class="form-control @error('market_price') is-invalid @enderror"
-                                name="market_price" value="{{ old('market_price') }}"" autocomplete="market_price"
+                                name="market_price" value="{{ old('market_price') }}" autocomplete="market_price"
                                 autofocus>
                             @error('market_price')
                                 <span class="invalid-feedback" role="alert" style="color: red;">
@@ -73,7 +73,7 @@
 
                             <input value="{{ old('image_path') }}" placeholder="Market Price" id="image_path"
                                 type="file" class="form-control @error('image_path') is-invalid @enderror"
-                                name="image_path" value="{{ old('image_path') }}"" autocomplete="image_path" autofocus
+                                name="image_path" value="{{ old('image_path') }}" autocomplete="image_path" autofocus
                                 placeholder="image">
                             @error('image_path')
                                 <span class="invalid-feedback" role="alert" style="color: red;">
