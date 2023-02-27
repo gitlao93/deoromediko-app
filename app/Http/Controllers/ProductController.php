@@ -13,7 +13,7 @@ class ProductController extends Controller
 
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->paginate(5);
-        ;
+        
 
         return view('products', compact('products'));
        
@@ -21,7 +21,9 @@ class ProductController extends Controller
 
     public function showAll(Request $request) {
         $filters = $request->only(['search']);
-        $products = Product::filter($filters)->get();
+        // $products = Product::filter($filters)->get();
+        $products = Product::filter($filters)->paginate(10);
+        
 
         return view('dashboard', compact('products'));
  
