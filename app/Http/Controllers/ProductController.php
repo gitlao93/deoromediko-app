@@ -40,8 +40,8 @@ class ProductController extends Controller
         $input = $request->all();
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/productImages';
-            $genericName = str_replace('/', '_', $request->generic_name);
-            $brandName = str_replace('/', '_', $request->brand_name);
+            $genericName = preg_replace('/[^a-zA-Z0-9]/', '_', $request->generic_name);
+            $brandName = preg_replace('/[^a-zA-Z0-9]/', '_', $request->brand_name);
             $profileImage = $genericName . '_' . $brandName . '_' . date('Ymd') . '.' . $image->getClientOriginalExtension();
 
             // Resize the image using Intervention Image
@@ -74,35 +74,40 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        // dd($request);
+        // Validate the form data
         $request->validate([
             'generic_name' => 'required',
             'brand_name' => 'required',
             'product_form' => 'required',
             'market_price' => 'required',
-            'image_path' => '|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        // Define the input array
         $input = $request->all();
 
-        if ($image = $request->file('image_path')) {
+        // Handle the image upload
+        if ($request->hasFile('image_path')) {
             $destinationPath = 'images/productImages';
-            $genericName = str_replace('/', '_', $request->generic_name);
-            $brandName = str_replace('/', '_', $request->brand_name);
-            $profileImage = $genericName . '_' . $brandName . '.' . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
+            $genericName = preg_replace('/[^a-zA-Z0-9]/', '_', $request->generic_name);
+            $brandName = preg_replace('/[^a-zA-Z0-9]/', '_', $request->brand_name);
+            $profileImage = $genericName . '_' . $brandName . '.' . $request->file('image_path')->getClientOriginalExtension();
+            $request->file('image_path')->move($destinationPath, $profileImage);
             $input['image_path'] = $profileImage;
 
             // Compress the uploaded image
+            $compressedImage = $genericName . '_' . $brandName . '_compressed.jpg';
             $image = Image::make(public_path($destinationPath . '/' . $profileImage));
             $image->encode('jpg', 60);
-            $image->save(public_path($destinationPath . '/' . $profileImage));
+            $image->save(public_path($destinationPath . '/compressed/' . $compressedImage));
         } else {
             unset($input['image_path']);
         }
 
+        // Update the product
         $product->update($input);
 
+        // Redirect back to the dashboard
         return redirect('admin/dashboard')->with('success', 'Product updated successfully.');
     }
 
