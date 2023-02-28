@@ -18,7 +18,6 @@ class ProductController extends Controller
         $products = Product::filter($filters)->paginate(5);
         $users = User::filter($filters);
         return view('products', compact('products'));
-     
     }
 
     public function showAll(Request $request)
@@ -35,11 +34,14 @@ class ProductController extends Controller
             'generic_name' => 'required',
             'brand_name' => 'required',
             'product_form' => 'required',
-            'market_price' => 'required',
+            'market_price' => ['required', 'regex:/^\d{1,3}(,\d{3})*(\.\d+)?$/'],
             'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $input = $request->all();
+        // Remove comma from market_price
+        $input['market_price'] = str_replace(',', '', $input['market_price']);
+
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/productImages';
             $genericName = preg_replace('/[^a-zA-Z0-9]/', '_', $request->generic_name);
@@ -81,12 +83,14 @@ class ProductController extends Controller
             'generic_name' => 'required',
             'brand_name' => 'required',
             'product_form' => 'required',
-            'market_price' => 'required',
+            'market_price' => ['required', 'regex:/^\d{1,3}(,\d{3})*(\.\d+)?$/'],
             'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         // Define the input array
         $input = $request->all();
+             // Remove comma from market_price
+             $input['market_price'] = str_replace(',', '', $input['market_price']);
 
         // Handle the image upload
         if ($request->hasFile('image_path')) {
@@ -159,33 +163,32 @@ class ProductController extends Controller
             'user_type' => 'required|in:user,admin',
             'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-    
+
         $input = $request->only(['name', 'email', 'user_type']);
         $input['password'] = Hash::make($request->input('password'));
         $user = User::create($input);
-    
+
         // Handle profile image upload
         if ($request->hasFile('profile_image')) {
             $destinationPath = 'images/profileImgs';
             $file = $request->file('profile_image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($destinationPath), $filename);
-    
+
             // Resize the image to a smaller size
             $image = Image::make(public_path($destinationPath . '/' . $filename));
             $image->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $image->save(public_path($destinationPath . '/' . $filename));
-    
+
             // Update user record with profile image filename
             $user->profile_image = $filename;
             $user->save();
         }
-    
+
         return redirect('admin/view-user')->with('success', 'User added successfully.');
     }
-    
 
     // UPDATE USER
     public function updateuser(Request $request, $id)
