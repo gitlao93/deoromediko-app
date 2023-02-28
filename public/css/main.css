@@ -261,7 +261,7 @@ body {
     align-items: center;
     justify-content: flex-end;
     gap: 50px;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -270,6 +270,23 @@ body {
     height: 50px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.header-details {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    justify-content: center;
+    gap: 50px;
+}
+
+.header-details .search-box {
+    width: 60%;
+}
+
+.header-details .dropdown i {
+    color: #000;
+    font-size: 22px;
 }
 
 .header-wrapper .input-box {
@@ -316,6 +333,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     gap: 20px;
+    justify-content: center;
 }
 
 .product-wrap p {
@@ -332,7 +350,7 @@ body {
 }
 
 .product-wrap img {
-    width: 280px;
+    width: 100%;
     object-fit: cover;
     height: 250px;
     border-radius: 30px;
@@ -766,11 +784,6 @@ nav a {
         border-radius: 30px;
     }
 
-    .header-wrapper h3,
-    .header-wrapper img {
-        display: none;
-    }
-
     .header-wrapper .input-box {
         width: 200px;
     }
@@ -780,19 +793,24 @@ nav a {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 550px) {
+    .header-details {
+        width: 10%;
+    }
+
     .header-wrapper .input-box {
-        width: 100px;
+        width: 150px;
+        padding: 5px;
     }
-    input[type="text"]::placeholder {
-        color: transparent;
-    }
-    input[type="text"]::-webkit-input-placeholder {
-        color: transparent;
-    }
-    .input-box i {
+
+    .dropdown-menu.show {
         display: block;
-        position: absolute;
+        transform: translate3d(-150px, 23px, 0px) !important;
+    }
+
+    .header-wrapper h3,
+    .header-wrapper img {
+        display: none;
     }
 }
 

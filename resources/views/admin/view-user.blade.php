@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="submit-btn" style="text-align: center;">
-                    <button type="button" class="btn btn-primary" style="width: 350px;" data-toggle="modal"
+                    <button type="button" class="btn btn-primary" style="width: 100%;" data-toggle="modal"
                     data-target="#add">Add User</button>
                 </div>
 

@@ -20,31 +20,39 @@
                 </div>
             </form>
         @endif
-        {{-- <h3>{{ Auth::user()->name }}</h3> --}}
-        <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ Auth::user()->name }}
-                </a>
-            {{-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ $users->profile_image }}
-            </a> --}}
+        <div class="header-details">
+            <h3>{{ Auth::user()->name }}</h3>
+            <div class="dropdown show">
+                <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <img src="{{ Auth::user()->profile_image != null ? asset('/images/profileImgs/' . Auth::user()->profile_image) : asset('/images/logo.png') }}"
+                        alt="Profile Image" class="img-in-card ">
 
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                              document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
 
             </div>
+            {{-- <img class="logo" src="{{ asset('/images/mark.jpeg') }}" alt="profile pic" /> --}}
+
+            <div class="dropdown show">
+                <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+                </div>
+            </div>
         </div>
-        {{-- <img class="logo" src="{{ asset('/images/mark.jpeg') }}" alt="profile pic" /> --}}
-        {{-- <i class="fa-solid fa-ellipsis-vertical"></i> --}}
     </div>
     {{-- <i id="menu-btn" class="fa-solid fa-arrow-left"></i> --}}
     <i id="menu-btn" class="fas fa-bars"></i>
