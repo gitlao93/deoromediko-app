@@ -95,8 +95,9 @@ body {
     grid-template-areas:
         "side-nav header"
         "side-nav content";
-    /* height: 100vh; */
-    transition: grid-template-columns 1s ease, grid-template-rows 1s ease;
+    height: 100vh;
+    transition: grid-template-columns 0.4s ease-in-out,
+        grid-template-rows 0.4s ease-in-out;
     /* transition: all .5s ease; */
 }
 
@@ -175,10 +176,26 @@ body {
     color: #00933c;
 }
 
+a.nav-link.active i,
+a.nav-link:hover i {
+    background: #00933c;
+    border-radius: 0 20px 20px 0;
+    padding: 10px;
+    margin-left: -20px;
+    margin-right: 20px;
+    color: #fff;
+    /* font-size: 30px; */
+}
+
 .nav_container li i {
     width: 20%;
     font-size: 25px;
     margin: 0 auto;
+    transition: all 0.4s ease;
+}
+
+.nav_container li i a {
+    transition: all 0.4s ease;
 }
 
 .nav_container li span {
@@ -216,11 +233,14 @@ body {
 /* buttons */
 
 #resize-btn {
-    transition: transform 1s ease;
+    /* transition: transform 1s ease; */
+    font-size: 28px;
+    cursor: pointer;
+    color: #00933c;
 }
 
 #menu-btn {
-    transition: transform 1s ease;
+    /* transition: transform 1s ease; */
     font-size: 28px;
     cursor: pointer;
     color: #00933c;
@@ -246,7 +266,7 @@ body {
     display: none;
 }
 
-#resize-btn.resize-right .right-section .notes {
+.container-parent.resize-right .right-section .notes {
     display: none;
 }
 
@@ -359,6 +379,7 @@ body {
 .product-wrap {
     flex: 0 0 30%;
     position: relative;
+    max-width: 350px;
 }
 
 .out-of-stock {

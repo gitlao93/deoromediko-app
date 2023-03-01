@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function showAll(Request $request)
     {
         $filters = $request->only(['search']);
-        $products = Product::filter($filters)->get();
+        $products = Product::filter($filters)->paginate(9);
 
         return view('admin.dashboard', compact('products'));
     }

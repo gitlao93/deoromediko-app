@@ -93,7 +93,7 @@
 
             </div>
         </div>
-        {{-- <x-layouts.rightnav /> --}}
+        <x-navigations.rightnav />
     </div>
     <x-navigations.sidenav />
 
