@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NotesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +43,13 @@ Route::middleware(['auth', 'user.type:admin'])->group(function () {
     Route::post('admin/view-user', [ProductController::class, 'storeuser'])->name('users.storeuser');
     Route::put('admin/view-user/{id}', [ProductController::class, 'updateuser'])->name('users.updateuser');
     Route::delete('admin/view-user/{id}', [ProductController::class, 'deleteuser'])->name('users.deleteuser');
+
+
+    // ADD NOTE
+    Route::post('admin/dashboard', [NotesController::class, 'store'])->name('notes.store');
+    Route::put('/admin/dashboard/{id}', [NotesController::class, 'update'])->name('notes.update');
+    Route::delete('admin/dashboard/{id}', [NotesController::class, 'delete'])->name('notes.delete');
+
 
 });
 

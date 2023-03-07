@@ -119,7 +119,7 @@ body {
 
 .right-section {
     grid-area: right-section;
-    background: #fff;
+    background: transparent;
     padding: 10px 20px;
 }
 
@@ -184,7 +184,7 @@ a.nav-link:hover i {
     margin-left: -20px;
     margin-right: 20px;
     color: #fff;
-    /* font-size: 30px; */
+    font-size: 20px;
 }
 
 .nav_container li i {
@@ -234,9 +234,22 @@ a.nav-link:hover i {
 
 #resize-btn {
     /* transition: transform 1s ease; */
-    font-size: 28px;
+    font-size: 25px;
     cursor: pointer;
-    color: #00933c;
+    color: #000;
+}
+
+#add-btn {
+    font-size: 25px;
+    cursor: pointer;
+    color: #2192ff;
+}
+
+.btn-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 #menu-btn {
@@ -264,6 +277,10 @@ a.nav-link:hover i {
 
 .container-parent.menu-open .nav_container ul li span {
     display: none;
+}
+
+.container-parent.menu-open .nav_container ul li i {
+    width: 45px;
 }
 
 .container-parent.resize-right .right-section .notes {
@@ -572,6 +589,13 @@ tr:hover {
     border: 2px solid #2192ff;
     padding: 15px;
     border-radius: 20px;
+    /* overflow: auto; */
+
+    background: #fff;
+}
+
+.notes p {
+    overflow: auto;
 }
 
 /* RESPONSIVE HAMBURGER */
@@ -736,6 +760,12 @@ nav a {
     .add-prod-wrapper {
         width: 100%;
     }
+    .right-section {
+        padding: 10px !important;
+    }
+    .content-section {
+        padding-top: 3em;
+    }
 }
 
 @media (max-width: 1035px) {
@@ -748,7 +778,8 @@ nav a {
     }
 
     .side-nav {
-        width: 80px;
+        /* width: 80px; */
+        display: none !important;
     }
 }
 
@@ -762,6 +793,12 @@ nav a {
         object-fit: cover;
         height: 250px;
         border-radius: 30px;
+    }
+
+    .right-section {
+        position: absolute;
+        /* top: 0; */
+        right: 2%;
     }
 
     /* .header-wrapper .input-box .search {

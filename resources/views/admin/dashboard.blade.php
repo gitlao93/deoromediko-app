@@ -33,7 +33,8 @@
                 {{ $products->links() }}
             </div>
         </div>
-        <x-navigations.rightnav />
+        <x-navigations.rightnav :notes="$notes" />
+
     </div>
     <x-navigations.sidenav />
 

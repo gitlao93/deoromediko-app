@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Note;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,6 +18,8 @@ class ProductController extends Controller
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->paginate(5);
         $users = User::filter($filters);
+        
+        
         return view('products', compact('products'));
     }
 
@@ -24,8 +27,9 @@ class ProductController extends Controller
     {
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->paginate(9);
-
-        return view('admin.dashboard', compact('products'));
+        
+        $notes = Note::all();
+        return view('admin.dashboard', compact('products', 'notes'));
     }
 
     public function store(Request $request)
@@ -65,7 +69,9 @@ class ProductController extends Controller
 
     public function addproduct()
     {
-        return view('user.add-prod');
+        $notes = Note::all();
+        return view('admin.add-prod', compact('notes'));
+       
     }
 
     public function updateprod(Request $request)

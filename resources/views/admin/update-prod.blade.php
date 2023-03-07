@@ -67,7 +67,7 @@
 
             </div>
         </div>
-        <x-navigations.rightnav />
+        {{-- <x-navigations.rightnav /> --}}
     </div>
     <x-navigations.sidenav />
 </x-main>

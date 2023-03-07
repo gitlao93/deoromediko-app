@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,8 +12,10 @@ class UserController extends Controller
     {
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->get();
+        $notes = Note::all();
+        return view('users.dashboard', compact('products', 'notes'));
 
-        return view('users.dashboard', compact('products'));
+        // return view('users.dashboard', compact('products'));
     }
 
      // USERS CONTROLLER
