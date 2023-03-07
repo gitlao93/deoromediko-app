@@ -14,15 +14,38 @@
         <div class="parent-notes">
             @foreach ($notes as $note)
                 <div class="notes">
+                    <div class="dropdown show edits" style="text-align: right;">
+                        <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" class="btn btn-success" data-toggle="modal"
+                                data-target="#updatenotes{{ $note->id }}">
+                                Edit Notes
+                            </a>
+                            <a class="dropdown-item" class="btn btn-danger" data-toggle="modal"
+                                data-target="#deletenotes{{ $note->id }}">
+                                Delete
+                            </a>
+
+
+                        </div>
+
+                    </div>
                     <p>{{ $note->body }}</p>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#updatenotes{{ $note->id }}"><i
-                            class="fa-solid fa-pen t text-white"></i>
+                    {{-- <button type="button" class="btn btn-success" data-toggle="modal"
+                        data-target="#updatenotes{{ $note->id }}"><i class="fa-solid fa-pen t text-white"></i>
                     </button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletenotes{{ $note->id }}"><i
-                            class="fa-solid fa-trash text-white"></i></button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                        data-target="#deletenotes{{ $note->id }}"><i
+                            class="fa-solid fa-trash text-white"></i></button> --}}
+
                 </div>
-                <x-notes.update-notes :note="$note"/>
-                <x-notes.delete-notes :note="$note"/>
+                <x-notes.update-notes :note="$note" />
+                <x-notes.delete-notes :note="$note" />
             @endforeach
         </div>
     @endif
