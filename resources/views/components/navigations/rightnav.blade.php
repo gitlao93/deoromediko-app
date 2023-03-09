@@ -14,6 +14,7 @@
         <div class="parent-notes">
             @foreach ($notes as $note)
                 <div class="notes">
+                    @if (auth()->user()->id === $note->user_id)
                     <div class="dropdown show edits" style="text-align: right;">
                         <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -35,7 +36,9 @@
                         </div>
 
                     </div>
-                    <p>{{ $note->body }}</p>
+                    @endif
+                    <p><b>{{ $note->body }}</b></p>
+                   <small><i>-Created by {{ $note->user->name }}</i></small>
                     {{-- <button type="button" class="btn btn-success" data-toggle="modal"
                         data-target="#updatenotes{{ $note->id }}"><i class="fa-solid fa-pen t text-white"></i>
                     </button>

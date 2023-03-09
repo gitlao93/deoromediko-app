@@ -121,6 +121,8 @@ body {
     grid-area: right-section;
     background: transparent;
     padding: 10px 20px;
+    overflow-y: scroll;
+    height: 85vh;
 }
 
 .side-nav {

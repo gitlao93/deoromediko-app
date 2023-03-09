@@ -31,7 +31,7 @@
                                 </span>
                             @enderror
                         </div>
-                
+                        <input type="hidden" name="user_type" value="{{ Auth::user()->user_type }}">
                         
                 
                         <div class="submit-btn">

@@ -28,7 +28,8 @@ class ProductController extends Controller
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->paginate(9);
         
-        $notes = Note::all();
+        $notes = Note::with('user')->orderBy('created_at', 'desc')->get();
+
         return view('admin.dashboard', compact('products', 'notes'));
     }
 

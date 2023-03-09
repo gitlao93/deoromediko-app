@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotesController;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,15 +46,11 @@ Route::middleware(['auth', 'user.type:admin'])->group(function () {
     Route::put('admin/view-user/{id}', [ProductController::class, 'updateuser'])->name('users.updateuser');
     Route::delete('admin/view-user/{id}', [ProductController::class, 'deleteuser'])->name('users.deleteuser');
 
-
     // ADD NOTE
-    Route::post('admin/dashboard', [NotesController::class, 'store'])->name('notes.store');
-    Route::put('/admin/dashboard/{id}', [NotesController::class, 'update'])->name('notes.update');
-    Route::delete('admin/dashboard/{id}', [NotesController::class, 'delete'])->name('notes.delete');
-
-
+    //  Route::post('dashboard', [NotesController::class, 'store'])->name('notes.store');
+    //  Route::put('/dashboard/{id}', [NotesController::class, 'update'])->name('notes.update');
+    //  Route::delete('dashboard/{id}', [NotesController::class, 'delete'])->name('notes.delete');
 });
-
 
 Route::middleware(['auth', 'user.type:user'])->group(function () {
     // USER ROUTE
@@ -61,4 +59,17 @@ Route::middleware(['auth', 'user.type:user'])->group(function () {
     Route::get('users/update-prod', [UserController::class, 'userupdateprod']);
     Route::post('users/update-prod/{id}', [UserController::class, 'usersupdatestock'])->name('usersupdatestock');
     Route::get('users/single-prod/{id}', [UserController::class, 'singleprod'])->name('single-prod');
+
+    // ADD NOTE
+    //  Route::post('dashboard', [UserController::class, 'store'])->name('notes.store');
+    //  Route::put('/dashboard/{id}', [UserController::class, 'update'])->name('notes.update');
+    //  Route::delete('dashboard/{id}', [UserController::class, 'delete'])->name('notes.delete');
+});
+
+Route::middleware(['auth'])->group(function () {
+    // USER ROUTE
+
+    Route::post('dashboard', [NotesController::class, 'store'])->name('notes.store');
+    Route::put('/dashboard/{id}', [NotesController::class, 'update'])->name('notes.update');
+    Route::delete('dashboard/{id}', [NotesController::class, 'delete'])->name('notes.delete');
 });
