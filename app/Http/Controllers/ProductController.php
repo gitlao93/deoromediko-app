@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Note;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,17 +17,20 @@ class ProductController extends Controller
     {
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->paginate(5);
+        $users = User::filter($filters);
+        
+        
         return view('products', compact('products'));
     }
 
     public function showAll(Request $request)
     {
         $filters = $request->only(['search']);
-        // $products = Product::filter($filters)->get();
-        $products = Product::filter($filters)->paginate(10);
+        $products = Product::filter($filters)->paginate(9);
         
+        $notes = Note::with('user')->orderBy('created_at', 'desc')->get();
 
-        return view('admin.dashboard', compact('products'));
+        return view('admin.dashboard', compact('products', 'notes'));
     }
 
     public function store(Request $request)
@@ -35,11 +39,14 @@ class ProductController extends Controller
             'generic_name' => 'required',
             'brand_name' => 'required',
             'product_form' => 'required',
-            'market_price' => 'required',
+            'market_price' => ['required', 'regex:/^\d{1,3}(,\d{3})*(\.\d+)?$/'],
             'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $input = $request->all();
+        // Remove comma from market_price
+        $input['market_price'] = str_replace(',', '', $input['market_price']);
+
         if ($image = $request->file('image_path')) {
             $destinationPath = 'images/productImages';
             $genericName = preg_replace('/[^a-zA-Z0-9]/', '_', $request->generic_name);
@@ -61,8 +68,11 @@ class ProductController extends Controller
         return redirect('admin/dashboard')->with('success', 'Product created successfully.');
     }
 
-    public function addproduct(){
-        return view('user.add-prod');
+    public function addproduct()
+    {
+        $notes = Note::all();
+        return view('admin.add-prod', compact('notes'));
+       
     }
 
     public function updateprod(Request $request)
@@ -80,12 +90,14 @@ class ProductController extends Controller
             'generic_name' => 'required',
             'brand_name' => 'required',
             'product_form' => 'required',
-            'market_price' => 'required',
+            'market_price' => ['required', 'regex:/^\d{1,3}(,\d{3})*(\.\d+)?$/'],
             'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         // Define the input array
         $input = $request->all();
+             // Remove comma from market_price
+             $input['market_price'] = str_replace(',', '', $input['market_price']);
 
         // Handle the image upload
         if ($request->hasFile('image_path')) {
@@ -151,17 +163,36 @@ class ProductController extends Controller
     //  ADD NEW USER
     public function storeuser(Request $request)
     {
-        //  dd($request);
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'user_type' => 'required|in:user,admin',
+            'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $input = $request->only(['name', 'email', 'user_type']);
         $input['password'] = Hash::make($request->input('password'));
-        User::create($input);
+        $user = User::create($input);
+
+        // Handle profile image upload
+        if ($request->hasFile('profile_image')) {
+            $destinationPath = 'images/profileImgs';
+            $file = $request->file('profile_image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($destinationPath), $filename);
+
+            // Resize the image to a smaller size
+            $image = Image::make(public_path($destinationPath . '/' . $filename));
+            $image->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $image->save(public_path($destinationPath . '/' . $filename));
+
+            // Update user record with profile image filename
+            $user->profile_image = $filename;
+            $user->save();
+        }
 
         return redirect('admin/view-user')->with('success', 'User added successfully.');
     }
@@ -173,7 +204,8 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'user_type' => 'required|in:user,admin',
-            'password' => 'required|nullable|string|min:8|confirmed',
+            'password' => 'nullable|string|min:8|confirmed',
+            'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $user = User::findOrFail($id);
@@ -184,6 +216,18 @@ class ProductController extends Controller
             $user->password = Hash::make($validatedData['password']);
         }
         $user->save();
+
+        // Handle profile image upload
+        if ($request->hasFile('profile_image')) {
+            $destinationPath = 'images/profileImgs';
+            $file = $request->file('profile_image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($destinationPath), $filename);
+
+            // Update user record with profile image filename
+            $user->profile_image = $filename;
+            $user->save();
+        }
 
         return redirect('admin/view-user')->with('success', 'User updated successfully.');
     }

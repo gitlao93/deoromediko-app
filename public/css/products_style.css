@@ -104,6 +104,10 @@ min-width: 1281px	                    extra large resolutions (or xl)	          
     border-radius: 30px;
 }
 
+nav.flex.items-center.justify-between {
+    justify-content: center !important;
+}
+
 @media (max-width: 1280px) and (min-width: 1025px) {
     .product-card {
         width: 98vw;

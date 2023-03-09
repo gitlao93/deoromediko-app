@@ -18,6 +18,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Profile</th>
                                 <th>Type</th>
                                 <th>Action</th>
                             </tr>
@@ -26,6 +27,8 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td>{{ $user->name }}</td>
+                                    <td><img src="{{ $user->profile_image != null ? asset('/images/profileImgs/' . $user->profile_image) : asset('/images/logo.png') }}"
+                                        alt="Product_image" class="img-in-card "></td>
                                     <td>{{ $user->user_type }}</td>
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
@@ -48,13 +51,13 @@
                 </div>
 
                 <div class="submit-btn" style="text-align: center;">
-                    <button type="button" class="btn btn-primary" style="width: 350px;" data-toggle="modal"
+                    <button type="button" class="btn btn-primary" style="width: 100%;" data-toggle="modal"
                     data-target="#add">Add User</button>
                 </div>
 
             </div>
         </div>
-        {{-- <x-layouts.rightnav /> --}}
+        {{-- <x-navigations.rightnav /> --}}
     </div>
     <x-navigations.sidenav />
 </x-main>

@@ -49,10 +49,14 @@
                                 <option value="admin" {{ $user->user_type == 'admin' ? 'selected' : '' }}>Admin</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="profile_image">Profile Image</label>
+                            <input type="file" class="form-control" id="profile_image" name="profile_image">
+                        </div>
                 
                         <div class="form-group">
                             <input placeholder="New Password" id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required>
+                                class="form-control @error('password') is-invalid @enderror" name="password">
                             @error('password')
                             <span class="invalid-feedback" role="alert" style="color: red;">
                                 <strong>{{ $message }}</strong>
@@ -63,7 +67,7 @@
                         <div class="form-group">
                             <input placeholder="Confirm Password" id="password_confirmation" type="password"
                                 class="form-control @error('password_confirmation') is-invalid @enderror"
-                                name="password_confirmation" required>
+                                name="password_confirmation">
                             @error('password_confirmation')
                             <span class="invalid-feedback" role="alert" style="color: red;">
                                 <strong>{{ $message }}</strong>

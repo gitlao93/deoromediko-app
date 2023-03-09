@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,8 +12,11 @@ class UserController extends Controller
     {
         $filters = $request->only(['search']);
         $products = Product::filter($filters)->get();
+        $notes = Note::with('user')->orderBy('created_at', 'desc')->get();
 
-        return view('users.dashboard', compact('products'));
+        return view('users.dashboard', compact('products', 'notes'));
+
+        // return view('users.dashboard', compact('products'));
     }
 
      // USERS CONTROLLER
@@ -83,7 +87,46 @@ class UserController extends Controller
 
 
 
-  
+     public function store(Request $request)
+     {
+         $request->validate([
+             'body' => 'required|string|max:255',
+         ]);
+     
+         $note = new Note();
+         $note->body = $request->input('body');
+         $note->user_id = auth()->user()->id; // Assign the authenticated user's id to the new note
+         $note->save();
+     
+         return redirect()->back()->with('success', 'Note added successfully!');
+     }
+ 
+     public function update(Request $request, $id)
+     {
+         $note = Note::findOrFail($id);
+ 
+     // Check if the user who is updating the note is the same user who created the note
+     if ($note->user_id !== auth()->user()->id) {
+         abort(403, 'Unauthorized action.');
+     }
+ 
+     $note->body = $request->body;
+     $note->save();
+ 
+     // Redirect back to the admin dashboard
+     return redirect()->back()->with('success', 'Note updated successfully!');
+     }
+ 
+     // DELETE Notes
+     public function delete($id)
+     {
+         $note = Note::findOrFail($id);
+         $note->delete();
+     
+         // Redirect back to the admin dashboard
+         // return redirect()->route('admin.dashboard')->with('success', 'Note deleted successfully.');
+         return redirect()->back()->with('success', 'Note deleted successfully!');
+     }
   
 
 }
