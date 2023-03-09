@@ -6,7 +6,8 @@
                 <div class="input-box">
                     <i class="fa fa-search search-icon" aria-hidden="true"></i>
                     <input type="text" placeholder="Mag search ng gamot..." name="search" />
-                    <button class="button"><i class="fa fa-search icon-btn" aria-hidden="true"></i><span>Search</span></button>
+                    <button class="button"><i class="fa fa-search icon-btn"
+                            aria-hidden="true"></i><span>Search</span></button>
                 </div>
             </form>
         </div>
@@ -17,27 +18,32 @@
             @foreach ($products as $list)
                 <div class="product-card">
 
-                    <div class="product-card-image-wrapper"> 
-                        <img src="{{ $list->image_path != null ? asset('/images/productImages/'.$list->image_path) : asset('/images/DeOroMekidkoIcon.png') }}" alt="Product_image" class="img-in-card ">
-                       
+                    <div class="product-card-image-wrapper {{ $list->status == 1 ? 'overlay' : '' }}">
+                        <img src="{{ $list->image_path != null ? asset('/images/productImages/' . $list->image_path) : asset('/images/DeOroMekidkoIcon.png') }}"
+                            alt="Product_image" class="img-in-card ">
+                        @if ($list->status == 1)
+                            <h5 class="out-of-stock">Out of stock</h5>
+                        @endif
+
                     </div>
                     <div class="product-card-info-wrapper">
                         <div class="info">
                             <p>Generic Name</p>
-                            <h2>{{$list->generic_name}}</h2>
+                            <h2>{{ $list->generic_name }}</h2>
                         </div>
                         <div class="info">
                             <p>Brand Name</p>
-                            <h2>{{$list->brand_name}}</h2>
+                            <h2>{{ $list->brand_name }}</h2>
                         </div>
                         <div class="info">
                             <p>Packaging</p>
-                            <h2>{{$list->product_form}}</h2>
+                            <h2>{{ $list->product_form }}</h2>
                         </div>
                         <div class="info">
                             <p>Price</p>
-                            <h2>&#8369;{{number_format($list->market_price,2)}}</h2>
+                            <h2>&#8369;{{ number_format($list->market_price, 2) }}</h2>
                         </div>
+
                     </div>
 
                 </div>
@@ -47,4 +53,3 @@
 
     </section>
 </x-layout>
-

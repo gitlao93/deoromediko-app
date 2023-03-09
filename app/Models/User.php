@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -17,11 +18,26 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+
+     
     protected $fillable = [
         'name',
         'email',
+        'user_type',
         'password',
     ];
+
+    public function scopeFilter($query, $filters)
+    {
+        // Add your filter logic here
+        if (isset($filters['search'])) {
+            $query->where('name', 'like', '%'.$filters['search'].'%')
+                  ->orWhere('email', 'like', '%'.$filters['search'].'%');
+        }
+
+        return $query;
+    }
 
     /**
      * The attributes that should be hidden for serialization.
