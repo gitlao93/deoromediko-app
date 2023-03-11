@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $filters = $request->only(['search']);
-        $products = Product::filter($filters)->get();
+        $products = Product::filter($filters)->orderBy('generic_name')->paginate(9);
         $notes = Note::with('user')->orderBy('created_at', 'desc')->get();
 
         return view('users.dashboard', compact('products', 'notes'));

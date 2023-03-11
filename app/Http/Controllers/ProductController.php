@@ -16,7 +16,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $filters = $request->only(['search']);
-        $products = Product::filter($filters)->paginate(5);
+        // $products = Product::filter($filters)->paginate(5);
+        $products = Product::filter($filters)->orderBy('generic_name')->paginate(5);
         $users = User::filter($filters);
         
         
@@ -26,7 +27,7 @@ class ProductController extends Controller
     public function showAll(Request $request)
     {
         $filters = $request->only(['search']);
-        $products = Product::filter($filters)->paginate(9);
+        $products = Product::filter($filters)->orderBy('generic_name')->paginate(9);
         
         $notes = Note::with('user')->orderBy('created_at', 'desc')->get();
 
